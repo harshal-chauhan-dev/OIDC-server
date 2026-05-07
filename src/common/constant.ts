@@ -1,0 +1,1 @@
+export const CLIENT_APP_TYPES: string[] = ["web", "app"];

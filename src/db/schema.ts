@@ -1,9 +1,6 @@
 import { pgTable, serial, varchar, text, timestamp, pgEnum } from "drizzle-orm/pg-core";
-
-export const appTypeEnum = pgEnum("app_type", [
-    "web",
-    "app",
-  ]);
+import { CLIENT_APP_TYPES } from "../common/constant.ts";
+export const appTypeEnum = pgEnum("app_type", CLIENT_APP_TYPES as [string, ...string[]]);
   
 export const clients = pgTable("clients", {
     id: serial("id").primaryKey(),

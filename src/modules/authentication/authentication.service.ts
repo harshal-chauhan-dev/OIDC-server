@@ -4,6 +4,7 @@ import { clients } from "../../db/schema.ts";
 import RegisterClientDto from "./dto/registerClient.dto.ts";
 import { z } from "zod";
 import { db } from "../../db/index.ts";
+import { CLIENT_APP_TYPES } from "../../common/constant.ts";
 
 export default class AuthenticationService {
 
@@ -17,8 +18,8 @@ export default class AuthenticationService {
             throw ApiError.badRequest("App name is required and must be at least 3 characters long");
         }
 
-        if(!appType || !["web", "app"].includes(appType)) {
-            throw ApiError.badRequest("App type is required and must be either web or app");
+        if(!appType || !CLIENT_APP_TYPES.includes(appType)) {
+            throw ApiError.badRequest("App type is required and must be either " + CLIENT_APP_TYPES.join(", "));
         }
 
         if(!redirectUris || redirectUris.length === 0) {
